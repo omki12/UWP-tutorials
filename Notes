@@ -1,0 +1,34 @@
+attached property vs dependent propety?
+
+. Stackpanel, Grid, relativePanel, SplitView,Canvas
+. ListView, GridView
+. RadioButton, CheckBox, ToggleButton,ToggleSwitch, ComboBox, ListBox, Image
+	ListBox vs COmboBox => Mulitple item selection, Linq, keeps selection highlighted.
+	ToggleButton Vs ToggleSwitch: Button is like normal button with 3 state option. Switch is with content propety, can set offContent and OnContent.
+. TimePicker, CalenderDatePicker, CalenderView, Slider, ProgressBar, ProgressRing, ButtonFlyout,AutoSugest
+	CalenderDatePicker vs CalenderView:  CalenderView Mulitple item selection, Linq.
+. ScrollViewer
+
+	SplitView => pane and content.
+	RelativePanel: 1.Align..WithPanel 2.Align..With.. 3...Of..
+	SplitPanel:	SplitPanel.Pane, SplitPanel.Content..		inline,overlay,compactOverlay
+	ButtonFlyout: can have Flyout or MenuFlyout. (MenuFlyoutItem,MenuFlyoutSeparator, ToggleMenuFlyoutItem: checkbox)
+	ScrollViewer: Stackpanel->Scrollviewver doesn't work as stackpanel allot all the area. 
+	Canvas: Absolute points
+. App hosts Windows. Windows Hosts Frame. Frame Hosts Page.
+. Navigate => HyperLinkButton => uri / eventHandler. => Frame.Navigate(typeOf(page1), object ..) 
+		=>	On page1 => override OnNavigateTo(EventArgs e) => e.slkds 
+		=> Frame.CanGoForward.. 
+. hamburgerMenu:
+	
+----------------------------------
+. Binding:
+	1. ForeGround = {StaticResource myBrush}; here, '{' is a binding statement.
+	2.
+	3.
+	. StaticResource Binding only happens once, during the starting of app, and never changes.
+	. ThemeResource is happens whenever theme changes.
+. Styles:
+	Page.Resources, Application.Resources, ResourceDictionary.MergedDictionary
+	BasedOn : different style. kind of inheritance. SHould have same target type.
+	RequestTheme: ONly request. if theme is high constrast, requested theme (dark or light) won't be applied.
