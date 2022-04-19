@@ -23,8 +23,8 @@ attached property vs dependent propety?
 	
 ----------------------------------
 . Binding:
-	1. ForeGround = {StaticResource myBrush}; here, '{' is a binding statement.
-	2.
+	1. Element To Element: ForeGround = {StaticResource myBrush}; here, '{' is a binding statement.
+	2. Event Binding: <AppBarButton IsEnabled="{x:Bind RootFrame.CanGoForward, Mode=OneWay}" Click="{x:Bind RootFrame.GoForward}"/>
 	3.
 	. StaticResource Binding only happens once, during the starting of app, and never changes.
 	. ThemeResource is happens whenever theme changes.
