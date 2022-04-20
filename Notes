@@ -32,3 +32,11 @@ attached property vs dependent propety?
 	Page.Resources, Application.Resources, ResourceDictionary.MergedDictionary
 	BasedOn : different style. kind of inheritance. SHould have same target type.
 	RequestTheme: ONly request. if theme is high constrast, requested theme (dark or light) won't be applied.
+---------------------------------
+. Visual state Manager
+	1. Using Visual State
+		<VisualStateManager><VisualStateGroups><VisualStateGroup x:Name = "Wide">
+		 <VisualState.StateTrigger> <AdaptiveTrigger minWidht = "900"> ... />
+		 <VisualState.Setter> <Setter Target = myStackPanel.VerticalAlignment value = "90"> .. />
+	2. Using Different Pages.
+		Device-Family : Just add Folder with Name "DeviceFamily-Mobile" or MainPage.DeviceFamily-Mobile.xaml
