@@ -23,15 +23,67 @@ attached property vs dependent propety?
 	
 ----------------------------------
 . Binding:
-	1. Element To Element: ForeGround = {StaticResource myBrush}; here, '{' is a binding statement.
-	2. Event Binding: <AppBarButton IsEnabled="{x:Bind RootFrame.CanGoForward, Mode=OneWay}" Click="{x:Bind RootFrame.GoForward}"/>
+	1. Element To Element: 
+		<TB Text = "{Binding ElementName = myTextBox, Path = Text}">
+	2. Event Binding: 
+		<AppBarButton IsEnabled="{x:Bind RootFrame.CanGoForward, Mode=OneWay}" Click="{x:Bind RootFrame.GoForward}"/>
 	3.
 	. StaticResource Binding only happens once, during the starting of app, and never changes.
+		ForeGround = {StaticResource myBrush}; here, '{' is a binding statement.
 	. ThemeResource is happens whenever theme changes.
+	.  ObservableCollection class implements INotifyPropertyChanged and INotifyCollectionChanged.
+	. Make element obserable by 2 ways:
+		1. By inheriting class from Dependecy Object. (Framework elements)
+		2. By implementing INotifyPropertyChanged
+	. Binding to the collection:
+		ItemSouce, x:DataType, => Datacontext is changed to the selected Item, in ItempTemplateDataTemplate.
+		CollectionViewSource => When in DataTemplate, selected item is choosen as datacontext.
+			Useftul when you have Collection of Collection. Like Dict<id,List>, or Grouped collection.
+			Need to declare it as page resouce .
+	. Binding:
+			ElementName, Sourced, Relative Source ( Self, ancestor, )
+			Defulat binding is to DataContext
+			Runtime binding.
+			Use Binding.Update to update the asynchrous one time binding.
+			
+			Defult binded to dataContext.
+			Casting is not needed.
+			Element Binding: need to use ElementName as default datacotext is not page.
+				{Binding Value, ElementName= mySlider }
+			Relative Source:
+				<Rectangle Width="200" Height="{Binding Width, RelativeSource={RelativeSource Self}}" ... />
+			Default Binding Mode is one way
+			
+	. x:Bind:
+			No default binding to DataContext
+			Compile time binding. ( Can perform lazy loading thought)
+			Not good for 
+			binds to the function directly for value conversion.
+						
+			Defult binded to root of page.
+			casting is needed if returned object is of type "Object".
+			Element Binding: as page is the default context of the file, there's no need to pass the elementName param
+				{x:Bind mySlider.Value }
+			Relative Source:
+				<Rectangle x:Name="rect1" Width="200" Height="{x:Bind rect1.Width}" ... />
+			Default Binding Mode is one way
+----------------------------------
 . Styles:
 	Page.Resources, Application.Resources, ResourceDictionary.MergedDictionary
 	BasedOn : different style. kind of inheritance. SHould have same target type.
-	RequestTheme: ONly request. if theme is high constrast, requested theme (dark or light) won't be applied.
+	RequestTheme: ONly request. if theme is high contrast, requested theme (dark or light) won't be applied.
+		<Page.Resources> 
+		<Style TargetType = "Button" x:key = "SubmitButtonSytle" >
+		<Setter property= "Content"  value =  "Submit"> .. //
+		..
+		<Button Name = "b1" style = "{staticResource SubmitButtonSytle}" />
+------------------------------------
+
+. DataTemplate
+	<GridView ItemSouce = "{x:Bind Books}"> <GridView.ItemTempalte> <DataTemplate x:DataType = "local:BookModel">
+		<Stack> <TB Text = "{x:Bind bookName}" ... </Stack>
+	</DataTemplate></GridView.ItemTempalte></GridView>
+
 ---------------------------------
 . Visual state Manager
 	1. Using Visual State
