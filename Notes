@@ -92,3 +92,32 @@ attached property vs dependent propety?
 		 <VisualState.Setter> <Setter Target = myStackPanel.VerticalAlignment value = "90"> .. />
 	2. Using Different Pages.
 		Device-Family : Just add Folder with Name "DeviceFamily-Mobile" or MainPage.DeviceFamily-Mobile.xaml
+
+---------------------------------
+
+. App LifeCycle:
+	
+	Not Activated -> Running in background -> Leaving BackGround -> Running Foreground -> Entering Background -> Running in background -> Resuming / Terminating.
+	// If one have Background task running, app may never go thorugh suspeded state.
+	//TODO: WRONG
+	Not Activated -> Running in background -> Leaving BackGround -> Running Foreground -> Suspended -> Resuming / Terminating.
+	
+	App launched vs app activated
+		Launched by system or by user. Runs in foreground. 
+		Activation by other app like share, URI invocation
+	ApplicationExecutionState _state = LaunchActivatedEventArgs.PreviousExecutionState ;
+		NotRunning: As if application is started newly.
+		Suspened: 	As if user has minimized the app and didn't return to it for longer duration. ( App is still in memory)
+		Terminated:	same as Suspended
+		ClosedByUsr:Same as Terminated
+		Running: 	Noting
+	App Suspenstion:
+		If user is away from app and 
+			1. User does not return to it in limited time.
+			2. No Background task is running
+			3. No activity sponsered execution (Music) is active.
+		Invokes Application.Suspending event. (OnSuspending). DO Not save your work here. Save in "EnteredInBackground"
+	PreLaunch:
+	
+	
+	
